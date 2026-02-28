@@ -2,41 +2,37 @@ import json
 from pathlib import Path
 from datetime import datetime
 import shutil
+import utils
+
 
 def delete_file(file_path):
     source = Path(file_path)
-    trash = Path.home() / ".trash"
-    trash.mkdir(exist_ok=True)
-    metadata_file = trash / "metadata.json"
-
+    
     if not source.exists():
         print("Dosya bulunamadı")
         return
 
+    utils.ensure_trash()
 
-    if metadata_file.exists():
-        with open(metadata_file, "r") as f:
-            metadata = json.load(f)
-    else:
-        metadata = {}
+    original_path = str(source.resolve())
+    file_size = source.stat().st_size
+    file_type = source.suffix if source.suffix else "unknown"
 
-
-    destination = trash / source.name
-    if destination.exists():
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        destination = trash / f"{source.stem}_{timestamp}{source.suffix}"
-
-
-    metadata[destination.name] = {
-        "original_path": str(source.resolve()),
-        "deleted_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    trash_name = utils.generate_unique_name(utils.TRASH_DIR / source.name)
+    shutil.move(str(source), trash_name)
+    
+    
+    metadata = utils.load_metadata()
+    metadata[trash_name.name] = {
+        "original_path": original_path,
+        "deleted_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "size": int(file_size),
+        "type": file_type
     }
 
-    with open(metadata_file, "w") as f:
-        json.dump(metadata, f, indent=4)
+    utils.save_metadata(metadata)
 
-    shutil.move(str(source), destination)
-    print(f"{source.name} trash'e taşındı")
+    print(f"{trash_name.name} trash'e taşındı!")
 
 if __name__ == "__main__":
     path_input = input("Silinecek dosya: ")
