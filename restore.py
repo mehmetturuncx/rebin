@@ -1,45 +1,31 @@
 from pathlib import Path
 import shutil
-import json
+import utils
 
 def restore(file_name):
-    trash = Path.home() / ".trash"    
-    metadata_file = trash / "metadata.json"
-    source = trash / file_name
+    utils.ensure_trash()
+    metadata = utils.load_metadata()
 
-    if not source.exists():
-        print("Dosya trash'de bulunamadı!")
+    trash_file_path = utils.TRASH_DIR / file_name
+    if not trash_file_path.exists():
+        print("Trash dosyası bulunamadı!")
         return
-    if not metadata_file.exists():
-        print("Metadata bulanamadı!")
-        return
-
-    with open(metadata_file,"r") as f:
-        metadata = json.load(f)
 
     if file_name not in metadata:
-        print("Bu dosya metadataya kayıtlı değildir.") 
-    destination = Path(metadata[file_name]["original_path"])
-    destination.parent.mkdir(parents=True, exist_ok=True)
+        print("Dosya bulunamadı!")
+        return
 
-    if destination.exists():
-        counter = 1
-        new_destination = destination
+    original_path = Path(metadata[file_name]["original_path"])
+    restore_path = utils.generate_unique_name(original_path)
 
-        while new_destination.exists():
-            new_destination = destination.parent / f"{destination.stem}_{counter}{destination.suffix}"
-            counter += 1
-
-        destination = new_destination
-    
-    shutil.move(str(source),str(destination))
+    restore_path.parent.mkdir(exist_ok=True,parents=True)
+    shutil.move(str(trash_file_path),restore_path)    
 
     del metadata[file_name]
+    utils.save_metadata(metadata)
 
-    with open(metadata_file,"w") as f:
-        json.dump(metadata,f,indent=4)
-    
-    print(f"{file_name} geri yüklendi")
+    print(f"{file_name} geri yüklendi -> {restore_path}")
+
 
 if __name__ == "__main__":
     file_input = input("Trash deki dosya adı: ")
