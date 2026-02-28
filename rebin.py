@@ -1,30 +1,31 @@
-import argparse
+import sys
 from delete import delete_file
 from restore import restore
 from list import list_trash
+from empty import empty_trash  # Bu dosyayı az önce yaptığımız gibi kaydet
 
-def main():
-    parser = argparse.ArgumentParser(description="Rebin Terminal Trash Tool")
-    subparsers = parser.add_subparsers(dest="command")
-
-    dp = subparsers.add_parser("delete")
-    dp.add_argument("path", help="Silinecek dosya yolu")
-
-    rp = subparsers.add_parser("restore")
-    rp.add_argument("name", help="Trash'teki dosya adı")
-
-    lp = subparsers.add_parser("list", help="Trash içeriğini listele")
-
-    args = parser.parse_args()
-
-    if args.command == "delete":
-        delete_file(args.path)
-    elif args.command == "restore":
-        restore(args.name)
-    elif args.command == "list":
-        list_trash()
-    else:
-        parser.print_help()
+def print_help():
+    print("Rebin - Terminal Trash Tool")
+    print("Kullanım:")
+    print("  python3 rebin.py delete <dosya>   -> Dosyayı trash'e taşı")
+    print("  python3 rebin.py restore <dosya>  -> Trash'ten geri yükle")
+    print("  python3 rebin.py list             -> Trash içeriğini listele")
+    print("  python3 rebin.py empty            -> Çöp kutusunu tamamen boşalt")
 
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) < 2:
+        print_help()
+        sys.exit()
+
+    command = sys.argv[1].lower()
+
+    if command == "delete" and len(sys.argv) == 3:
+        delete_file(sys.argv[2])
+    elif command == "restore" and len(sys.argv) == 3:
+        restore(sys.argv[2])
+    elif command == "list":
+        list_trash()
+    elif command == "empty":
+        empty_trash()
+    else:
+        print_help()
