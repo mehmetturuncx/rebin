@@ -1,8 +1,8 @@
 import sys
-from delete import delete_file
-from restore import restore
-from list import list_trash
-from empty import empty_trash  # Bu dosyayı az önce yaptığımız gibi kaydet
+from .delete import delete_file
+from .restore import restore
+from .list import list_trash
+from .empty import empty_trash  # Bu dosyayı az önce yaptığımız gibi kaydet
 
 def print_help():
     print("Rebin - Terminal Trash Tool")
@@ -12,10 +12,10 @@ def print_help():
     print("  python3 rebin.py list             -> Trash içeriğini listele")
     print("  python3 rebin.py empty            -> Çöp kutusunu tamamen boşalt")
 
-if __name__ == "__main__":
+def main():
     if len(sys.argv) < 2:
         print_help()
-        sys.exit()
+        return
 
     command = sys.argv[1].lower()
 

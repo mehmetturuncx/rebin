@@ -1,5 +1,5 @@
 from pathlib import Path
-import utils
+import rebin.utils as utils
 
 def format_size(size):
     if size < 1024:

@@ -1,0 +1,24 @@
+# Python cache ve bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment klasörü (varsa)
+venv/
+env/
+.venv/
+.env/
+
+# IDE / Editor dosyaları
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Sistem dosyaları
+.DS_Store
+Thumbs.db
+
+# Rebin metadata (isteğe bağlı: local olarak tutmak istiyorsan ignore etme)
+# .trash/metadata.json

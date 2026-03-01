@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 from datetime import datetime
 import shutil
-import utils
+import rebin.utils as utils
 
 
 def delete_file(file_path):

@@ -1,6 +1,6 @@
 from pathlib import Path
 import shutil
-import utils
+import rebin.utils as utils
 
 def restore(file_name):
     utils.ensure_trash()
