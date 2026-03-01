@@ -9,6 +9,8 @@
 **Rebin**, terminal üzerinde çalışan bir çöp kutusu uygulamasıdır.  
 Python ile yazılmıştır ve Windows/Linux/Mac terminallerinde çalışır.  
 
+pip install rebin-cli
+
 ---
 
 ## Özellikler
@@ -18,6 +20,6 @@ Python ile yazılmıştır ve Windows/Linux/Mac terminallerinde çalışır.
 - Çöp kutusunu listeleme (`list`)  
 - Dosya adı, boyut, tür, silinme tarihi  
 - REBIN ASCII başlığı ve çöp kutusu simgesi ile görsellik  
-- Çöp kutusunu tamamen boşaltma (`empty`)  
+- Çöp kutusunu tamamen boşaltma (`empty`)
 
       
