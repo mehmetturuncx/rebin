@@ -1,0 +1,36 @@
+Metadata-Version: 2.4
+Name: rebin-cli
+Version: 1.0.0
+Summary: Terminal Trash Tool with ASCII UI
+Author: Mehmet
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: requires-python
+Dynamic: summary
+
+# Rebin - Terminal Trash Tool
+██████╗ ███████╗██████╗ ██╗███╗   ██╗         
+██╔══██╗██╔════╝██╔══██╗██║████╗  ██║        
+██████╔╝█████╗  ██████╔╝██║██╔██╗ ██║       
+██╔══██╗██╔══╝  ██╔══██╗██║██║╚██╗██║       
+██║  ██║███████╗██████╔╝██║██║ ╚████║       
+╚═╝  ╚═╝╚══════╝╚═════╝ ╚═╝╚═╝  ╚═══╝ 
+
+**Rebin**, terminal üzerinde çalışan bir çöp kutusu uygulamasıdır.  
+Python ile yazılmıştır ve Windows/Linux/Mac terminallerinde çalışır.  
+
+---
+
+## Özellikler
+
+- Dosyaları çöp kutusuna taşıma (`delete`)  
+- Çöp kutusundan geri yükleme (`restore`)  
+- Çöp kutusunu listeleme (`list`)  
+- Dosya adı, boyut, tür, silinme tarihi  
+- REBIN ASCII başlığı ve çöp kutusu simgesi ile görsellik  
+- Çöp kutusunu tamamen boşaltma (`empty`)  
+
+      
