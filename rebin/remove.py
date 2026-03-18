@@ -1,5 +1,5 @@
 from pathlib import Path
-import utils
+import rebin.utils as utils
 
 TRASH_DIR = Path.home() / ".rebin" / "trash"
 
@@ -7,7 +7,7 @@ def remove_file(filename):
     metadata = utils.load_metadata()
 
     if filename not in metadata:
-        print("Dosya çöp kutusunda bulunamadı")
+        print("File not found in trash")
         return
 
     file_path = TRASH_DIR / filename
@@ -18,4 +18,4 @@ def remove_file(filename):
     del metadata[filename]
     utils.save_metadata(metadata)
 
-    print(f"{filename} kalıcı olarak silindi.")
+    print(f"{filename} permanently deleted.")

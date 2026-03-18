@@ -7,12 +7,12 @@ from .remove import remove_file
 
 def print_help():
     print("Rebin - Terminal Trash Tool")
-    print("Kullanım:")
-    print("  python3 rebin.py delete <dosya>   -> Dosyayı trash'e taşı")
-    print("  python3 rebin.py restore <dosya>  -> Trash'ten geri yükle")
-    print("  python3 rebin.py list             -> Trash içeriğini listele")
-    print("  python3 rebin.py empty            -> Çöp kutusunu tamamen boşalt")
-    print("  python3 rebin.py remove <dosya>   -> Seçilen dosyayı sil")
+    print("Usage:")
+    print("  rebin delete <file>    -> Move file to trash")
+    print("  rebin restore <file>   -> Restore file from trash")
+    print("  rebin list             -> List trash contents")
+    print("  rebin empty            -> Empty the trash completely")
+    print("  rebin remove <file>    -> Permanently delete a file from trash")
 
 def main():
     if len(sys.argv) < 2:

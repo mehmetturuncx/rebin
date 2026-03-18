@@ -8,11 +8,11 @@ def restore(file_name):
 
     trash_file_path = utils.TRASH_DIR / file_name
     if not trash_file_path.exists():
-        print("Trash dosyası bulunamadı!")
+        print("File not found in trash!")
         return
 
     if file_name not in metadata:
-        print("Dosya bulunamadı!")
+        print("File not found in metadata!")
         return
 
     original_path = Path(metadata[file_name]["original_path"])
@@ -24,9 +24,9 @@ def restore(file_name):
     del metadata[file_name]
     utils.save_metadata(metadata)
 
-    print(f"{file_name} geri yüklendi -> {restore_path}")
+    print(f"{file_name} restored -> {restore_path}")
 
 
 if __name__ == "__main__":
-    file_input = input("Trash deki dosya adı: ")
+    file_input = input("File name in trash: ")
     restore(file_input)

@@ -5,6 +5,7 @@ rebin/cli.py
 rebin/delete.py
 rebin/empty.py
 rebin/list.py
+rebin/remove.py
 rebin/restore.py
 rebin/utils.py
 rebin_cli.egg-info/PKG-INFO

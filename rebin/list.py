@@ -49,10 +49,10 @@ def list_trash():
         print(f"{head}   {box}")
     
     if not metadata:
-        print("\nÇöp kutusu boş")
+        print("\nTrash is empty")
         return
     
-    print(f"{'Dosya Adı':<25} {'Boyut':>10} {'Tür':<8} {'Silinme Tarihi':<20}")
+    print(f"{'File Name':<25} {'Size':>10} {'Type':<8} {'Deleted At':<20}")
     print("-" * 65)
     
     for name, info in metadata.items():
@@ -60,6 +60,12 @@ def list_trash():
         file_type = info["type"]
         date = info["deleted_at"]
         print(f"{name:<25} {size:>10} {file_type:<8} {date:<20}")
+        if "contents" in info:
+            items = info["contents"]
+            for i, item in enumerate(items):
+                item_size = format_size(item["size"])
+                prefix = "└─" if i == len(items) - 1 else "├─"
+                print(f"  {prefix} {item['name']:<21} {item_size:>10} {item['type']:<8}")
 
 if __name__ == "__main__":
     list_trash()
